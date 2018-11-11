@@ -3,9 +3,6 @@ server {
 
   server_name {{ domain_name }};
   
-  location /.well-known/ {
-    allow all;;
-  }
 
   location / {
     root /srv/goapp-web;
