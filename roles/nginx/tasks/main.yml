@@ -1,0 +1,16 @@
+
+---
+    - name: install nginx
+      apt: allow_unauthenticated=yes name=nginx state=present
+
+    - name: Delete default config nginx
+      file: path=/etc/nginx/sites-available/default state=absent
+
+    - name: Specific nginx config from template
+      template: src=nginx.roza-gal.devops.srwx.net.conf.j2 dest=/etc/nginx/sites-available/{{ domain_name }} owner=root group=root mode=0644
+      notify: Restart nginx
+
+    - name: Symlink for nginx
+      file: src=/etc/nginx/sites-available/{{ domain_name }}  dest=/etc/nginx/sites-enabled/{{ domain_name }} state=link
+      notify: Restart nginx
+

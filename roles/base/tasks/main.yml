@@ -1,0 +1,4 @@
+---  
+    - name: Install python
+      raw: apt-get update && apt install python2.7 -y && update-alternatives --install /usr/bin/python python /usr/bin/python2.7 1
+

@@ -1,0 +1,21 @@
+
+---
+    - name: Install go
+      apt: name=golang-go state=present
+
+    - name: Create dir for goapp and maingo bin
+      file: path=/srv/sum/ state=directory
+
+    - name: Clone main.go from github
+      git:  repo=https://github.com/gro3a/sum.git dest=/srv/sum/
+
+    - name:  Build goapp
+      shell: go build /srv/sum/main.go
+      
+    - name: Create systemd goapp.service
+      template: src=systemd.maingo.service.conf.j2 dest=/etc/systemd/system/goapp.service
+
+    - name: Start goapp.service
+      shell: systemctl start goapp.service
+        
+

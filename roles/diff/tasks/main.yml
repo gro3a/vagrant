@@ -1,0 +1,9 @@
+
+---
+    - name: Create dir for phpapp
+      file: path=/srv/api-diff/ state=directory
+
+    - name: Clone diff.php from github
+      git: repo=https://github.com/gro3a/diff.git dest=/srv/api-diff
+
+

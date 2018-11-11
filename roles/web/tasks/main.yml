@@ -1,0 +1,12 @@
+---
+    - name: Install git
+      apt: name=git state=present
+    
+    - name: Create SRV directory and git clone
+      file: path=/srv/goapp-web state=directory
+
+    - name: Git clone
+      git: repo=https://github.com/gro3a/goapp-web.git dest=/srv/goapp-web
+      
+  
+
